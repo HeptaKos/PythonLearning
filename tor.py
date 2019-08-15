@@ -14,13 +14,14 @@ class upload_handler(RequestHandler):
         data = {
             "picture_data_bits": tmp,
         }
+        print(data)
         requests.get(urls, data)
 
 
 if __name__ == '__main__':
     app = Application(
         [
-            (r'/upload', upload_handler),
+            (r'/upload/(.*)', upload_handler),
         ]
     )
 

@@ -1,4 +1,3 @@
-from abc import ABC
 
 from tornado.web import RequestHandler, Application
 from tornado.ioloop import IOLoop
@@ -11,8 +10,8 @@ def translation(path):
 
 
 class result_handler(RequestHandler):
-    def get(self,picture_data):
-        with open("image.jpg","wb") as f:
+    def get(self, picture_data):
+        with open("image1.jpg", "wb") as f:
             f.write(picture_data)
         result = translation("image.jpg")
         data = {
@@ -24,8 +23,8 @@ class result_handler(RequestHandler):
 if __name__ == '__main__':
     app = Application(
         [
-            (r'/upload', upload_handler),
-        ]
+            (r'/upload/.*', result_handler)
+             ],
     )
 
     http_server = HTTPServer(app)
